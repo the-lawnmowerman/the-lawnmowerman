@@ -27,12 +27,12 @@
 </p>
 
 <p align="center"><sub><code>SRC //</code>
-  <a href="https://github.com/thewimybarbarian/industrial-cleaning-services">industrial-cleaning-services</a> ·
-  <a href="https://github.com/thewimybarbarian/campmackcookies">campmackcookies</a> ·
-  <a href="https://github.com/thewimybarbarian/dilly-rays-sweet-heat">dilly-rays-sweet-heat</a> ·
-  <a href="https://github.com/thewimybarbarian/taxguyokc">taxguyokc</a> ·
-  <a href="https://github.com/thewimybarbarian/r3dpill-ai">r3dpill-ai</a> ·
-  <a href="https://github.com/thewimybarbarian/automax">automax</a>
+  <a href="https://github.com/the-lawnmowerman/industrial-cleaning-services">industrial-cleaning-services</a> ·
+  <a href="https://github.com/the-lawnmowerman/campmackcookies">campmackcookies</a> ·
+  <a href="https://github.com/the-lawnmowerman/dilly-rays-sweet-heat">dilly-rays-sweet-heat</a> ·
+  <a href="https://github.com/the-lawnmowerman/taxguyokc">taxguyokc</a> ·
+  <a href="https://github.com/the-lawnmowerman/r3dpill-ai">r3dpill-ai</a> ·
+  <a href="https://github.com/the-lawnmowerman/automax">automax</a>
 </sub></p>
 
 <img src="assets/hud-toolbox.svg" width="100%" alt="02_TOOLBOX. Build: TypeScript, React, Next.js, Tailwind, Supabase, Stripe, Vercel, Cloudflare, Resend, Twilio. Design: Adobe Creative Cloud, Photoshop, Lightroom, Firefly, brand identity, logo and motion design. AI: Claude, prompt architecture, custom assistants, AI-assisted workflows.">
