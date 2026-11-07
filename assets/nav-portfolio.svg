@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 76" width="270" height="76" role="img" aria-label="PORTFOLIO">
+<style>text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}</style>
+<rect x="1" y="1" width="268" height="74" rx="37" fill="#000" stroke="#3dff8a" stroke-width="2"/>
+<text x="135" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#3dff8a" letter-spacing="2">PORTFOLIO ↗</text>
+<text x="135" y="55" text-anchor="middle" font-size="13" fill="#7f9c89">chaos.flick.systems</text>
+</svg>
