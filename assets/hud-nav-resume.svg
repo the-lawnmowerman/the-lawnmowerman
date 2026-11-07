@@ -4,11 +4,24 @@ text{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Libe
 .sans{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif}
 .led{animation:led 2.4s ease-in-out infinite}@keyframes led{0%,100%{opacity:1}50%{opacity:.35}}
 .cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.hov{animation:hov 8s 4s infinite both}
+@keyframes hov{0%{opacity:0}3.13%,18.75%{opacity:1}23.75%,100%{opacity:0}}
+.arr{animation:arr 8s 4s infinite both}
+@keyframes arr{0%,23.75%,100%{transform:translate(0,0)}3.13%,18.75%{transform:translate(3px,-3px)}}
+.bar{animation:bar 8s 4s infinite both;transform-box:fill-box;transform-origin:center}
+@keyframes bar{0%,23.75%,100%{transform:scaleY(1)}3.13%,18.75%{transform:scaleY(1.45)}}
+.shine{animation:shine 8s 4s infinite both}
+@keyframes shine{0%{transform:skewX(-18deg) translateX(0)}11.25%,100%{transform:skewX(-18deg) translateX(330px)}}</style>
+<defs><clipPath id="c"><rect x="1" y="1" width="208" height="82" rx="9"/></clipPath>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#00e676" stop-opacity="0"/><stop offset=".5" stop-color="#00e676" stop-opacity=".22"/><stop offset="1" stop-color="#00e676" stop-opacity="0"/></linearGradient></defs>
 <rect x="1" y="1" width="208" height="82" rx="9" fill="#0b1017" stroke="#23312d" stroke-width="1.5"/>
-<rect x="1" y="16" width="3" height="52" rx="1.5" fill="#00e676" opacity=".8"/>
+<g class="hov" opacity="0"><rect x="1" y="1" width="208" height="82" rx="9" fill="#00e676" fill-opacity=".07" stroke="#00e676" stroke-width="1.5"/></g>
+<g clip-path="url(#c)"><rect class="shine" x="-70" y="0" width="70" height="84" fill="url(#sh)" transform="skewX(-18)"/></g>
+<rect class="bar" x="1" y="16" width="3" height="52" rx="1.5" fill="#00e676" opacity=".8"/>
 <text x="16" y="24" font-size="10" fill="#7d8590" letter-spacing=".6"><tspan fill="#00e676">03</tspan> // DOSSIER</text>
-<text x="196" y="25" text-anchor="end" font-size="13" fill="#00e676">↗</text>
+<text class="arr" x="196" y="25" text-anchor="end" font-size="13" fill="#00e676">↗</text>
 <text x="16" y="52" font-size="15" font-weight="700" fill="#e6edf3" letter-spacing="1">RÉSUMÉ</text>
+<text class="hov" x="16" y="52" font-size="15" font-weight="700" fill="#00e676" letter-spacing="1" opacity="0">RÉSUMÉ</text>
 <text x="16" y="70" font-size="10.5" fill="#7d8590">flick.systems/resume</text>
 </svg>

@@ -84,7 +84,22 @@ function iconTile(icon, x, y, s, color = G) {
   return `<rect x="${x}" y="${y}" width="${s}" height="${s}" rx="8" fill="#0d1c18" stroke="${color}" stroke-opacity=".38"/>`
     + `<g class="ic" fill="${color}">${dots.map((p, i) => `<circle cx="${n1(p[0])}" cy="${n1(p[1])}" r="${n1(s * 0.022)}" style="animation-delay:-${((i * 0.29) % 3.2).toFixed(2)}s"/>`).join('')}</g>`;
 }
-const ICON_CSS = `.ic circle{animation:tw 3.2s ease-in-out infinite}@keyframes tw{0%,100%{opacity:1}50%{opacity:.45}}`;
+// a fake rollover: GitHub images can't see the mouse, so the "hover" state plays on a loop.
+// period P seconds, this element's turn starts d seconds in; lit for ~1.5s of the loop.
+function roll(P, d, travel = 330) {
+  const on = 0.25 / P * 100, hold = 1.5 / P * 100, off = hold + 0.4 / P * 100, sweep = 0.9 / P * 100;
+  const p = v => v.toFixed(2) + '%';
+  return `
+.hov{animation:hov ${P}s ${d}s infinite both}
+@keyframes hov{0%{opacity:0}${p(on)},${p(hold)}{opacity:1}${p(off)},100%{opacity:0}}
+.arr{animation:arr ${P}s ${d}s infinite both}
+@keyframes arr{0%,${p(off)},100%{transform:translate(0,0)}${p(on)},${p(hold)}{transform:translate(3px,-3px)}}
+.bar{animation:bar ${P}s ${d}s infinite both;transform-box:fill-box;transform-origin:center}
+@keyframes bar{0%,${p(off)},100%{transform:scaleY(1)}${p(on)},${p(hold)}{transform:scaleY(1.45)}}
+.shine{animation:shine ${P}s ${d}s infinite both}
+@keyframes shine{0%{transform:skewX(-18deg) translateX(0)}${p(sweep)},100%{transform:skewX(-18deg) translateX(${travel}px)}}`;
+}
+const ICON_CSS =`.ic circle{animation:tw 3.2s ease-in-out infinite}@keyframes tw{0%,100%{opacity:1}50%{opacity:.45}}`;
 
 /* ---------- 1. hero: HUD frame + chromatic dot-matrix wordmark ---------- */
 (function hero() {
@@ -124,15 +139,20 @@ ${cross}
 
 /* ---------- 2. docked nav cards ---------- */
 [['portfolio', '01', 'NODE', 'PORTFOLIO', 'chaos.flick.systems'], ['studio', '02', 'CORE', 'STUDIO', 'flick.systems'],
- ['resume', '03', 'DOSSIER', 'RÉSUMÉ', 'flick.systems/resume'], ['linkedin', '04', 'NETWORK', 'LINKEDIN', 'connect // direct']].forEach(([id, num, kind, label, sub]) => {
-  const W = 210, H = 84;
+ ['resume', '03', 'DOSSIER', 'RÉSUMÉ', 'flick.systems/resume'], ['linkedin', '04', 'NETWORK', 'LINKEDIN', 'connect // direct']].forEach(([id, num, kind, label, sub], i) => {
+  const W = 210, H = 84, d = i * 2;   // an 8s loop; each button takes its turn being "hovered"
   write(`hud-nav-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${label}: ${sub}">
-<style>${CSS}</style>
+<style>${CSS}${roll(8, d)}</style>
+<defs><clipPath id="c"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="9"/></clipPath>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="${G}" stop-opacity="0"/><stop offset=".5" stop-color="${G}" stop-opacity=".22"/><stop offset="1" stop-color="${G}" stop-opacity="0"/></linearGradient></defs>
 <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="9" fill="${PANEL}" stroke="${LINE}" stroke-width="1.5"/>
-<rect x="1" y="16" width="3" height="${H - 32}" rx="1.5" fill="${G}" opacity=".8"/>
+<g class="hov" opacity="0"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="9" fill="${G}" fill-opacity=".07" stroke="${G}" stroke-width="1.5"/></g>
+<g clip-path="url(#c)"><rect class="shine" x="-70" y="0" width="70" height="${H}" fill="url(#sh)" transform="skewX(-18)"/></g>
+<rect class="bar" x="1" y="16" width="3" height="${H - 32}" rx="1.5" fill="${G}" opacity=".8"/>
 <text x="16" y="24" font-size="10" fill="${MUTE}" letter-spacing=".6"><tspan fill="${G}">${num}</tspan> // ${kind}</text>
-<text x="${W - 14}" y="25" text-anchor="end" font-size="13" fill="${G}">↗</text>
+<text class="arr" x="${W - 14}" y="25" text-anchor="end" font-size="13" fill="${G}">↗</text>
 <text x="16" y="52" font-size="15" font-weight="700" fill="${INK}" letter-spacing="1">${label}</text>
+<text class="hov" x="16" y="52" font-size="15" font-weight="700" fill="${G}" letter-spacing="1" opacity="0">${label}</text>
 <text x="16" y="70" font-size="10.5" fill="${MUTE}">${sub}</text>
 </svg>`);
 });
@@ -204,11 +224,17 @@ PROJECTS.forEach(([id, icon, kind, title, desc, stack], k) => {
   const W = 430, H = 212, red = icon === 'pill', ac = red ? '#ff4250' : G;
   const lines = wrap(desc, 42);
   write(`hud-card-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(title)}: ${esc(desc)}">
-<style>${CSS}${ICON_CSS}</style>
+<style>${CSS}${ICON_CSS}${roll(12, 1 + k * 2, 620)}</style>
+<defs><clipPath id="c"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="10"/></clipPath>
+<linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="${ac}" stop-opacity="0"/><stop offset=".5" stop-color="${ac}" stop-opacity=".14"/><stop offset="1" stop-color="${ac}" stop-opacity="0"/></linearGradient></defs>
 <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="10" fill="${PANEL}" stroke="${LINE}" stroke-width="1.5"/>
+<g class="hov" opacity="0"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="10" fill="${ac}" fill-opacity=".045" stroke="${ac}" stroke-opacity=".75" stroke-width="1.5"/></g>
+<g clip-path="url(#c)"><rect class="shine" x="-120" y="0" width="120" height="${H}" fill="url(#sh)" transform="skewX(-18)"/></g>
 <circle class="led" cx="18" cy="19" r="3.5" fill="${G}"/>
 <text x="29" y="23" font-size="10.5" font-weight="700" fill="${G}" letter-spacing=".6">NODE_${String(k + 1).padStart(2, '0')} <tspan fill="${MUTE}" font-weight="500">// ${kind}</tspan></text>
-<text x="${W - 16}" y="23" text-anchor="end" font-size="10.5" fill="${MUTE}" letter-spacing=".6">DEPLOYED ↗</text>
+<text x="${W - 30}" y="23" text-anchor="end" font-size="10.5" fill="${MUTE}" letter-spacing=".6">DEPLOYED</text>
+<text class="hov" x="${W - 30}" y="23" text-anchor="end" font-size="10.5" font-weight="700" fill="${G}" letter-spacing=".6" opacity="0">DEPLOYED</text>
+<text class="arr" x="${W - 16}" y="23" text-anchor="end" font-size="11" fill="${G}">↗</text>
 <line x1="2" y1="36" x2="${W - 2}" y2="36" stroke="${RULE}"/>
 ${iconTile(icon, 18, 54, 62, ac)}
 <text x="96" y="74" font-size="15" font-weight="700" fill="${INK}">${esc(title)}</text>
