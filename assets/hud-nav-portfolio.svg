@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 84" width="210" height="84" role="img" aria-label="PORTFOLIO: chaos.flick.systems">
+<style>
+text{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
+.sans{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif}
+.led{animation:led 2.4s ease-in-out infinite}@keyframes led{0%,100%{opacity:1}50%{opacity:.35}}
+.cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<rect x="1" y="1" width="208" height="82" rx="9" fill="#0b1017" stroke="#23312d" stroke-width="1.5"/>
+<rect x="1" y="16" width="3" height="52" rx="1.5" fill="#00e676" opacity=".8"/>
+<text x="16" y="24" font-size="10" fill="#7d8590" letter-spacing=".6"><tspan fill="#00e676">01</tspan> // NODE</text>
+<text x="196" y="25" text-anchor="end" font-size="13" fill="#00e676">↗</text>
+<text x="16" y="52" font-size="15" font-weight="700" fill="#e6edf3" letter-spacing="1">PORTFOLIO</text>
+<text x="16" y="70" font-size="10.5" fill="#7d8590">chaos.flick.systems</text>
+</svg>

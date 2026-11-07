@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 52" width="880" height="52" role="img" aria-label="[01_SELECTED_WORK]">
+<style>
+text{font-family:ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace}
+.sans{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif}
+.led{animation:led 2.4s ease-in-out infinite}@keyframes led{0%,100%{opacity:1}50%{opacity:.35}}
+.cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<rect x="1" y="1" width="878" height="50" rx="10" fill="#071d14" stroke="#23312d" stroke-width="2"/>
+<rect x="2" y="2" width="5" height="48" rx="2" fill="#00e676"/>
+<text x="24" y="32" fill="#00e676" font-size="17" font-weight="700" letter-spacing="1.5">[01_SELECTED_WORK] <tspan class="cur">▋</tspan></text>
+<text x="856" y="31" text-anchor="end" fill="#00e676" font-size="12" opacity=".85">—————— [SHOWING 06 // PROD NODES]</text>
+</svg>
