@@ -141,7 +141,7 @@ ${cross}
 [['portfolio', '01', 'NODE', 'PORTFOLIO', 'chaos.flick.systems'], ['studio', '02', 'CORE', 'STUDIO', 'flick.systems'],
  ['resume', '03', 'DOSSIER', 'RÉSUMÉ', 'flick.systems/resume'], ['linkedin', '04', 'NETWORK', 'LINKEDIN', 'connect // direct']].forEach(([id, num, kind, label, sub], i) => {
   const W = 210, H = 84, d = i * 2;   // an 8s loop; each button takes its turn being "hovered"
-  write(`hud-nav-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${label}: ${sub}">
+  write(`hud-btn-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${label}: ${sub}">
 <style>${CSS}${roll(8, d)}</style>
 <defs><clipPath id="c"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="9"/></clipPath>
 <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="${G}" stop-opacity="0"/><stop offset=".5" stop-color="${G}" stop-opacity=".22"/><stop offset="1" stop-color="${G}" stop-opacity="0"/></linearGradient></defs>
@@ -223,7 +223,7 @@ const PROJECTS = [
 PROJECTS.forEach(([id, icon, kind, title, desc, stack], k) => {
   const W = 430, H = 212, red = icon === 'pill', ac = red ? '#ff4250' : G;
   const lines = wrap(desc, 42);
-  write(`hud-card-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(title)}: ${esc(desc)}">
+  write(`hud-node-${id}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(title)}: ${esc(desc)}">
 <style>${CSS}${ICON_CSS}${roll(12, 1 + k * 2, 620)}</style>
 <defs><clipPath id="c"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="10"/></clipPath>
 <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="${ac}" stop-opacity="0"/><stop offset=".5" stop-color="${ac}" stop-opacity=".14"/><stop offset="1" stop-color="${ac}" stop-opacity="0"/></linearGradient></defs>
